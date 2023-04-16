@@ -1,13 +1,13 @@
 import os
 
-# specify the directory containing the PNG files
-directory = "./layers/Lense1/"
+# specify the directory containing the files
+directory = "./layers/"
 
-# loop through all the files in the directory
-for filename in os.listdir(directory):
-    if filename.endswith(".png"):
+# loop through all the files and subdirectories in the directory
+for root, dirs, files in os.walk(directory):
+    for filename in files:
         # create the new filename by replacing "-" with " "
         new_filename = filename.replace("-", " ")
         
         # rename the file with the new filename
-        os.rename(directory + filename, directory + new_filename)
+        os.rename(os.path.join(root, filename), os.path.join(root, new_filename))
